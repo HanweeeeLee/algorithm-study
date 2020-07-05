@@ -33,7 +33,7 @@ import UIKit
 var str = "Hello, playground"
 
 public func solution(_ N : Int) -> Int { // 모르겠음 GG
-    var min:Int = (1 * N) * 2
+    var min:Int = (1 + N) * 2
     if N > 1 {
         for i in 1...N/2 {
             if N%i == 0 { //나누어떨어짐
