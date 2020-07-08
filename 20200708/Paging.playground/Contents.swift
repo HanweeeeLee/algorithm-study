@@ -23,3 +23,16 @@
 import UIKit
 
 var str = "Hello, playground"
+
+func printPaging(m:Int,n:Int) {
+    if m%n == 0 {
+        print("\(m/n)")
+    }
+    else {
+        print("\(m/n + 1)")
+    }
+}
+
+printPaging(m: 11, n: 3)
+
+
