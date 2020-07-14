@@ -27,6 +27,57 @@
  
  */
 
-import UIKit
-
 var str = "Hello, playground"
+
+struct Value {
+    var numerator:UInt
+    var denominator:UInt
+    var isInfinity:Bool
+}
+
+func solution(numerator:UInt,denominator:UInt) -> String? {
+    if denominator == 0 {
+        return nil
+    }
+    var currentNumerator:UInt = numerator
+    var currentDenominator:UInt = denominator
+    
+    var values:Array<Value> = Array()
+    
+    for i in 2...denominator {
+        if Float(currentNumerator)/Float(currentDenominator) >= 1.0/Float(i) {
+            let value:Value = Value(numerator: 1, denominator: i, isInfinity: false)
+            values.append(value)
+            currentNumerator = (currentNumerator * i ) - (1 * currentDenominator)
+            currentDenominator = currentDenominator * i
+        }
+    }
+    print("currentNumerator:\(currentNumerator) currentDenominator:\(currentDenominator)")
+    if currentNumerator != 0 {
+        if currentDenominator%currentNumerator == 0 {
+            currentDenominator = currentDenominator/currentNumerator
+            currentNumerator = 1
+            let value:Value = Value(numerator: currentNumerator, denominator: currentDenominator, isInfinity: false)
+            values.append(value)
+        }
+        else {
+            print("이거 무한아닌가??;;;;")
+            let value:Value = Value(numerator: 1, denominator: currentDenominator, isInfinity: true)
+            values.append(value)
+        }
+    }
+    var returnStr:String = "\(numerator) / \(denominator) = "
+    for i in 0..<values.count {
+        if i != 0 {
+            returnStr = returnStr + " + "
+        }
+        returnStr = returnStr + "\(values[i].numerator) / \(values[i].denominator)"
+        if values[i].isInfinity {
+            returnStr = returnStr + "..."
+        }
+    }
+    
+    return returnStr
+}
+
+print("result:\(solution(numerator: 5, denominator: 7))")
