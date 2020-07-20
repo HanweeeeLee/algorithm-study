@@ -37,11 +37,13 @@ var str = "Hello, playground"
 public func solution(_ A : inout [Int]) -> Int {
     var cnt:Int = 0
     let sortedA = A.sorted()
-    for i in 0..<sortedA.count-2 {
-        for j in i+1..<sortedA.count-1 {
-            for k in i+2..<sortedA.count {
-                if isTriangle(P: sortedA[i], Q: sortedA[j], R: sortedA[k], N: A.count) {
-                    cnt += 1
+    if A.count > 2 {
+        for i in 0..<sortedA.count-2 {
+            for j in i+1..<sortedA.count-1 {
+                for k in j+1..<sortedA.count {
+                    if isTriangle(P: sortedA[i], Q: sortedA[j], R: sortedA[k], N: A.count) {
+                        cnt += 1
+                    }
                 }
             }
         }
@@ -52,14 +54,12 @@ public func solution(_ A : inout [Int]) -> Int {
 
 func isTriangle(P:Int,Q:Int,R:Int,N:Int) -> Bool {
     var isTriangle:Bool = false
-    if (P >= 0 && Q >= 0 && R >= 0 && P < Q && Q < R && R < N) {
-        if P + Q > R && Q + R > P && R + P > Q {
-            isTriangle = true
-        }
+    if P + Q > R && Q + R > P && R + P > Q {
+        isTriangle = true
     }
+    
     return isTriangle
 }
 
 var result = [10,2,5,1,8,12]
 print("result:\(solution(&result))")
-//문제를 이해 못하겠음 ㅡ,.ㅡ
