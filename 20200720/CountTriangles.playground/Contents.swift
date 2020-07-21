@@ -34,7 +34,7 @@ import UIKit
 
 var str = "Hello, playground"
 
-public func solution(_ A : inout [Int]) -> Int {
+public func solution(_ A : inout [Int]) -> Int {//O(N**3)
     var cnt:Int = 0
     let sortedA = A.sorted()
     if A.count > 2 {
