@@ -53,7 +53,9 @@ public func solution(_ A : inout [Int], _ B : inout [Int]) -> Int { //O(N + max(
                 searchIndex = searchIndex - B.count
             }
             var isExist:Bool = false
+            var tmpSet:Set = Set<Int>()
             for j in A[searchIndex]...B[searchIndex] {
+                tmpSet.insert(j)
                 if checkSet.contains(j) {
                     isExist = true
                     break
@@ -63,9 +65,7 @@ public func solution(_ A : inout [Int], _ B : inout [Int]) -> Int { //O(N + max(
                 continue
             }
             else {
-                for j in A[searchIndex]...B[searchIndex] {
-                    checkSet.insert(j)
-                }
+                checkSet.formUnion(tmpSet)
                 currentCnt += 1
             }
         }
