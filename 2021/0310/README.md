@@ -65,7 +65,7 @@ func solution(_ n:Int) -> Int {
     return result
 }
 ```
-[9](https://user-images.githubusercontent.com/60125719/110640364-19d00a80-81f4-11eb-8ce8-d08c0b7876e0.gif)
+![Sieve_of_Eratosthenes_animation](https://user-images.githubusercontent.com/60125719/110640364-19d00a80-81f4-11eb-8ce8-d08c0b7876e0.gif)
 ->
 1. 2부터 소수를 구하고자 하는 구간의 모든 수를 나열한다. 그림에서 회색 사각형으로 두른 수들이 여기에 해당한다.
 2. 2는 소수이므로 오른쪽에 2를 쓴다. (빨간색)
