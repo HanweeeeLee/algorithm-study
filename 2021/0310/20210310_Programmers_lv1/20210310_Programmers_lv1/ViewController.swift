@@ -15,48 +15,29 @@ class ViewController: NSViewController {
         print("result1: \(solution(10))") //4
         print("result2: \(solution(5))") //3
     }
-    
-    
     func solution(_ n:Int) -> Int {
-        var primeNumberCnt: Int = 0
-        var checkArr: [Int] = [Int]()
-        for i in 2...n {
-            checkArr.append(i)
+        var arr = [Int].init(repeating: 0, count: n+1)
+        var result = 0
+        for index in 2...n {
+            arr[index] = index
+            
         }
-        
-        while true {
-            if checkArr.count == 0 {
-                break
+        for index in 2...n {
+            if arr[index] == 0 {
+                continue
             }
-            let checkNumber: Int = checkArr.first!
-            for i in 0..<checkArr.count {
-                var isPrimeChecked: Bool = false
-                if checkNumber == checkArr[i] {
-                    primeNumberCnt += 1
-                    isPrimeChecked = true
-                }
-                if isPrimeChecked {
-                    isPrimeChecked = false
-                    //todo 지금 i의 배수를 다 지워버리자.
-                    removeDrainage(arr: &checkArr, origin: checkNumber)
-                    break
-                }
+            var j = index + index
+            while(j <= n) {
+                arr[j] = 0
+                j += index
             }
         }
-        return primeNumberCnt
-    }
-    
-    func removeDrainage( arr: inout [Int], origin: Int) {
-        var willRemoveIndexArr: [Int] = [Int]()
-        for i in 0..<arr.count {
-            if arr[i] % origin == 0 {
-                willRemoveIndexArr.append(i)
+        for index in 2...n {
+            if arr[index] != 0 {
+                result += 1
             }
         }
-        let sortedWillRemoved = willRemoveIndexArr.sorted(by: { $0 > $1 })
-        for i in 0..<sortedWillRemoved.count {
-            arr.remove(at: sortedWillRemoved[i])
-        }
+        return result
     }
 
 

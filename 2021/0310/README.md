@@ -40,6 +40,48 @@ func getSoutionUseUnderPrimeNumbers(checkNumber: Int ,primeNumbers:[Int]) -> Boo
 ```
 ### 에라토스테네스의 체
 ```
+func solution(_ n:Int) -> Int {
+    var arr = [Int].init(repeating: 0, count: n+1)
+    var result = 0
+    for index in 2...n {
+        arr[index] = index
+        
+    }
+    for index in 2...n {
+        if arr[index] == 0 {
+            continue
+        }
+        var j = index + index
+        while(j <= n) {
+            arr[j] = 0
+            j += index
+        }
+    }
+    for index in 2...n {
+        if arr[index] != 0 {
+            result += 1
+        }
+    }
+    return result
+}
+```
+[9](https://user-images.githubusercontent.com/60125719/110640364-19d00a80-81f4-11eb-8ce8-d08c0b7876e0.gif)
+->
+1. 2부터 소수를 구하고자 하는 구간의 모든 수를 나열한다. 그림에서 회색 사각형으로 두른 수들이 여기에 해당한다.
+2. 2는 소수이므로 오른쪽에 2를 쓴다. (빨간색)
+3. 자기 자신을 제외한 2의 배수를 모두 지운다.
+4. 남아있는 수 가운데 3은 소수이므로 오른쪽에 3을 쓴다. (초록색)
+5. 자기 자신을 제외한 3의 배수를 모두 지운다.
+6. 남아있는 수 가운데 5는 소수이므로 오른쪽에 5를 쓴다. (파란색)
+7. 자기 자신을 제외한 5의 배수를 모두 지운다.
+8. 남아있는 수 가운데 7은 소수이므로 오른쪽에 7을 쓴다. (노란색)
+9. 자기 자신을 제외한 7의 배수를 모두 지운다.
+10. 위의 과정을 반복하면 구하는 구간의 모든 소수가 남는다.
+
+
+
+
+```
     func solution(_ n:Int) -> Int {
         var primeNumberCnt: Int = 0
         var checkArr: [Int] = [Int]()
