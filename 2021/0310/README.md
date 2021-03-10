@@ -40,6 +40,45 @@ func getSoutionUseUnderPrimeNumbers(checkNumber: Int ,primeNumbers:[Int]) -> Boo
 ```
 ### 에라토스테네스의 체
 ```
+    func solution(_ n:Int) -> Int {
+        var primeNumberCnt: Int = 0
+        var checkArr: [Int] = [Int]()
+        for i in 2...n {
+            checkArr.append(i)
+        }
+        
+        while true {
+            if checkArr.count == 0 {
+                break
+            }
+            let checkNumber: Int = checkArr.first!
+            for i in 0..<checkArr.count {
+                var isPrimeChecked: Bool = false
+                if checkNumber == checkArr[i] {
+                    primeNumberCnt += 1
+                    isPrimeChecked = true
+                }
+                if isPrimeChecked {
+                    isPrimeChecked = false
+                    //todo 지금 i의 배수를 다 지워버리자.
+                    removeDrainage(arr: &checkArr, origin: checkNumber)
+                    break
+                }
+            }
+        }
+        return primeNumberCnt
+    }
+    
+    func removeDrainage( arr: inout [Int], origin: Int) {
+        var willRemoveIndexArr: [Int] = [Int]()
+        for i in 0..<arr.count {
+            if arr[i] % origin == 0 {
+                willRemoveIndexArr.append(i)
+            }
+        }
+        let sortedWillRemoved = willRemoveIndexArr.sorted(by: { $0 > $1 })
+        for i in 0..<sortedWillRemoved.count {
+            arr.remove(at: sortedWillRemoved[i])
+        }
+    }
 ```
-
-## lv2:[링크](https://programmers.co.kr/learn/courses/30/lessons/72411)
