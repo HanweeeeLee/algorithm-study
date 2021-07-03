@@ -25,4 +25,17 @@ n (10진법)    n (3진법)    앞뒤 반전(3진법)    10진법으로 표현
 따라서 229를 return 해야 합니다.
 
 ```
+func solution(_ n:Int) -> Int {
+    let bin3: String = convert10to3(n)
+    let reverse = String(bin3.reversed())
+    return convert3to10(reverse)
+}
+
+func convert3to10(_ inputed: String) -> Int {
+    return Int(inputed, radix: 3)!
+}
+
+func convert10to3(_ inputed: Int) -> String {
+    return String(inputed, radix: 3)
+}
 ```
